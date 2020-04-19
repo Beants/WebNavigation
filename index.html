@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./static/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="./static/css/my.css"
+          crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+
+</head>
+<body>
+<div class="container-fluid">
+    <h1 style="margin-top: 20px">
+        家庭影音中心
+        <small class="text-muted">导航</small>
+    </h1>
+    <div class="card-columns" id="list" style="">
+
+    </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="./static/js/jquery.js"
+        crossorigin="anonymous"></script>
+<script src="./static/js/popper.js"
+        crossorigin="anonymous"></script>
+<script src="./static/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+
+<script>
+    function creat(url, img, name, desc, imgstyle) {
+        var res = '<div class="card text-center" onclick="window.open(\'' + url + '\')">\n' +
+            '            <img src="' + img + '" class="card-img-top" alt="..." style="' + imgstyle + '">\n' +
+            '            <div class="card-body">\n' +
+            '                <h5 class="card-title">' + name + '</h5>\n' +
+            '                <p class="card-text">' + desc + '</p>\n' +
+            '            </div>\n' +
+            '        </div>'
+
+
+        return res
+    }
+
+    window.onload = function () {
+        var url = "./static/file/url.json";
+        var request = new XMLHttpRequest();
+        var list = document.getElementById('list');
+
+        request.open("get", url);
+        request.send(null);/*不发送数据到服务器*/
+        request.onload = function () {/*XHR对象获取到返回信息后执行*/
+            if (request.status === 200) {/*返回状态为200，即为数据获取成功*/
+                var json = JSON.parse(request.responseText);
+                for (var i = 0; i < json.length; i++) {
+                    console.log(json[i].imgStyle);
+                    $("#list").append(creat(json[i].url, json[i].img, json[i].name, json[i].desc, json[i].imgStyle),);
+                }
+                console.log(json);
+            }
+        }
+    }
+</script>
+</html>

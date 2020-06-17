@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./static/css/my.css"
           crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>家庭影音中心</title>
 
 </head>
 <body>
@@ -21,7 +21,11 @@
         <small class="text-muted">导航</small>
     </h1>
     <div class="card-columns" id="list" style="">
-
+<!--        <div class="card text-center" onclick="add()">-->
+<!--            <div class="card-body">-->
+<!--                <h5 class="card-title">添加网址</h5>-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
 </div>
 
@@ -37,6 +41,10 @@
 </body>
 
 <script>
+
+
+
+
     function creat(url, img, name, desc, imgstyle) {
         var res = '<div class="card text-center" onclick="window.open(\'' + url + '\')">\n' +
             '            <img src="' + img + '" class="card-img-top" alt="..." style="' + imgstyle + '">\n' +
